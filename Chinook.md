@@ -84,6 +84,9 @@
 
 16. Provide a query that shows all Invoices but includes the # of invoice line items.
 
+	SELECT COUNT(il.InvoiceId), i.* FROM Invoice i
+	INNER JOIN InvoiceLine il ON i.InvoiceId = il.InvoiceId GROUP BY(il.InvoiceId)
+
 17. Provide a query that shows total sales made by each sales agent.
 	SELECT e.FirstName, e.LastName AS FullName, c.CustomerId, i.CustomerId, c.SupportRepId, e.EmployeeId, c.supportRepId, sum(i.Total)
     FROM Customer c
@@ -158,7 +161,7 @@
 	ORDER BY NumberOfTracksSold DESC
 	LIMIT 3
 
-25. sProvide a query that shows the most purchased Media Type.
+25. Provide a query that shows the most purchased Media Type.
 	
 	SELECT SUM(Invoice.Total) AS TotalSales, Track.Name, MediaType.Name AS MediaType
 	FROM InvoiceLine
